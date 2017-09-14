@@ -1,0 +1,27 @@
+{
+  "name": "dataprep-flattener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'Error: no test specified' && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "author": "Spencer Tranter",
+  "dependencies": {
+    "auto-load": "^3.0.0",
+    "flat": "^4.0.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
+    "minimist": "^1.2.0"
+  },
+  "repository": "https://github.com/semiosBIO/dataprep-flattener.git"
+}
