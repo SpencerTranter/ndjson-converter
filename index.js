@@ -2,35 +2,31 @@ const _       = require('lodash');
 const flatten = require('flat');
 const fs      = require('fs');
 const moment  = require('moment');
-const samples = require('auto-load')('./input/2017-09-14');
+const samples = require('auto-load')('input');
 
-const RX    = /JSON[0-9A-Z]{16}([0-9]*)/;
+const RX    = /[0-9A-Z]{16}([0-9]*)/;
 
-new Promise((resolve, reject) => {
+var pad = function (n) {
 
-  fs.stat('./prepped.json', (err) => {
+  return (n < 10) ? (`0${n}`) : n;
 
-    if (!err) {
+};
 
-      fs.unlink('./prepped.json', (error) => {
+new Promise((resolve) => {
 
-        if (err) reject(error);
-        else {
+  fs.stat('output', (err) => {
 
-          console.log('successfully deleted /prepped.json');
-          resolve();
+    if (err) {
 
-        }
+      fs.mkdir('output', () => {
+
+        console.log('Output folder doesn\'t exist, so I made the folder');
+        resolve();
 
       });
 
     }
-    else {
-
-      console.log('No file exists yet, creating.');
-      resolve();
-
-    }
+    else resolve();
 
   });
 
@@ -40,16 +36,14 @@ new Promise((resolve, reject) => {
 
     const flat = flatten(value);
     const d = new Date(key.match(RX)[1] * 1000);
-    flat.stamp = `${[d.getMonth() + 1, d.getDate(), d.getFullYear()].join('/')} ${[d.getHours(), d.getMinutes(), d.getSeconds()].join(':')}`;
+    flat.stamp = `${[d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-')} ${[d.getHours(), d.getMinutes(), d.getSeconds()].join(':')}`;
     const json = `${JSON.stringify(flat)}\n`;
 
     fs.appendFile(`./output/${moment().format()}.json`, json, 'utf8', (err) => {
 
       if (err) throw err;
-      else console.log('success');
 
     });
-
 
   });
 
