@@ -32,6 +32,8 @@ new Promise((resolve) => {
 
 }).then(() => {
 
+  const time = moment().format();
+
   _.forEach(samples, (value, key) => {
 
     const flat = flatten(value);
@@ -39,7 +41,7 @@ new Promise((resolve) => {
     flat.stamp = `${[d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-')} ${[d.getHours(), d.getMinutes(), d.getSeconds()].join(':')}`;
     const json = `${JSON.stringify(flat)}\n`;
 
-    fs.appendFile(`./output/${moment().format()}.json`, json, 'utf8', (err) => {
+    fs.appendFile(`./output/${time}.json`, json, 'utf8', (err) => {
 
       if (err) throw err;
 
