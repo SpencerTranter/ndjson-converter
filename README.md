@@ -1,6 +1,6 @@
-# dataprep-flattener
+# ndjson-converter
 
-This program takes in folder of JSON files to then create a new file with each of the original files taking up a new line as a flattened object. This new file is then to be used by googles dataprep.
+This program takes in folder of JSON files and creates a single file with each of the original files taking up a new line as a flattened object. This new file is then to be used by googles dataprep.
 
 ### Installation
 ```
